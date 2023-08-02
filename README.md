@@ -1,17 +1,22 @@
 # 🤵🔥 Classy-Fire 🔥🤵
 Classy-fire is multiclass text classification approach leveraging OpenAI LLM model APIs optimally using clever parameter tuning and prompting.
 
-# Project
+# Start here
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+## Installation
+```
+pip install classy_fire
+```
+## Usage example
 
-As the maintainer of this project, please make a few updates:
+```python
+from classy_fire import LLMClassifier
+classifier = LLMClassifier(["Banana", "Watermelon", "Apple", "Grape"])
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+result = classifier("Has an elongated shape")
+print(result)
+>>> ('Banana', 0)
+```
 
 ## Contributing
 
