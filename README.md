@@ -29,6 +29,11 @@ Where $\Theta$ is the parameters (knowledge of the world) of the language model.
 * Classy-fire does this efficiently by mapping class strings to single tokens and providing a strong prior probability for these tokens. We instruct the model to generate a single token response, which allows for optimized inference runtime.
 * Classy-fire does this deterministically and with less sensitivity to confabulation (hallucination) by setting the model temperature to 0, thereby guaranteeing the returned response is the argmax of the model posterior probability.
 
+## LLMClassifier optional parameters
+LLMClassifier can be initialized with added parameters that can help instruct and ground it to the classification task at hand.
+* task_description = "Ability to provide additional context on the classification options and overall context on inputs"
+* few_shot_examples = "Ability to provide instances of inputs and corresponding expected output values as a string"
+
 
 ## Quality of results
 We ran an experiment to classify a sample of 100 tweets from the [tweet_eval dataset](https://huggingface.co/datasets/tweet_eval/viewer/emotion/train).
