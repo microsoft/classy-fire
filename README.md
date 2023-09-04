@@ -28,6 +28,20 @@ Where $\Theta$ is the parameters (knowledge of the world) of the language model.
 
 
 ## Quality of results
+We ran an experiment to classify a sample of 100 tweets from the (tweet_eval dataset)[https://huggingface.co/datasets/tweet_eval/viewer/emotion/train]. 
+The results are 
+             
+|              | precision | recall | f1-score | support |
+|--------------|-----------|--------|----------|---------|
+| anger        | 0.97      | 0.81   | 0.88     | 42      |
+| joy          | 0.74      | 0.92   | 0.82     | 25      |
+| optimism     | 1.00      | 0.25   | 0.40     | 8       |
+| sadness      | 0.75      | 1.00   | 0.86     | 21      |
+|              |           |        |          |         |
+| accuracy     |           |        | 0.83     | 96      |
+| macro avg    | 0.87      | 0.74   | 0.74     | 96      |
+| weighted avg | 0.87      | 0.83   | 0.82     | 96      |
+
 See evaluate.ipynb for a sample showcasing the power of this method on a public text classification dataset.
 
 
