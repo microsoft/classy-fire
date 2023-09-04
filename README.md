@@ -1,6 +1,14 @@
 # 🤵🔥 Classy-Fire 🔥🤵
 Classy-fire is a pretrained multiclass text classification approach that leverages Azure OpenAI's LLM APIs using clever parameter tuning and prompting for classification.
 
+## Why?
+* Tired of having to beg your LLM to pick from a set of options / actions?
+* Tired of working hard on cleaning and parsing its responses to trigger a flow?
+* Struggling to strip unhelpful prefixes (such as "Sure! " or "I am just a language model!")?
+* Having to wait on retries in cases of unexpected outputs?
+* Getting random responses on the same query?
+
+
 # Start here
 
 ## Installation
