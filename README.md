@@ -28,7 +28,7 @@ Where $\Theta$ is the parameters (knowledge of the world) of the language model.
 
 
 ## Quality of results
-We ran an experiment to classify a sample of 100 tweets from the (tweet_eval dataset)[https://huggingface.co/datasets/tweet_eval/viewer/emotion/train]. 
+We ran an experiment to classify a sample of 100 tweets from the [tweet_eval dataset](https://huggingface.co/datasets/tweet_eval/viewer/emotion/train).
 The results are 
              
 |              | precision | recall | f1-score | support |
