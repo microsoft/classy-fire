@@ -28,7 +28,7 @@ class LLMClassifier:
         "the following set of <options> and leveraging information given in <context>. Respond with the number corresponding to the selected option.\n"
         "<context>\n{context_string}\n</context>\n"
         "<options>\n{options_string}\n</options>\n"
-        "\nHere are some examples of how to respond:\n{few_shot_examples}\n\n###\n"
+        "{few_shot_prompt_segment}\n###\n"
     )
     user_prompt_base: str = "<Input>\n{user_prompt}\n</Input>\nResponse: "
 
@@ -40,6 +40,13 @@ class LLMClassifier:
         deployment_name: str = "gpt-35-turbo-0301",
         model_name: str = "gpt-3.5-turbo",
     ) -> None:
+        """
+        param class_names: A list of class names to classify to.
+        param task_description: A description of the task to be performed by the classifier.
+        param few_shot_examples: A string containing a few shot examples of how to use the classifier.
+        param deployment_name: The name of the deployment to use for the classifier.
+        param model_name: The name of the model to use for the classifier.
+        """
         self.class_names = class_names
         tokenizer = tiktoken.encoding_for_model(model_name)
         class_id_tokens = [tokenizer.encode(str(i)) for i in range(len(class_names))]
@@ -55,7 +62,7 @@ class LLMClassifier:
                         for i, cls in zip(range(len(class_names)), class_names)
                     ]
                 ),
-                few_shot_examples=few_shot_examples,
+                few_shot_prompt_segment=LLMClassifier._construct_few_shot_prompt_segment(few_shot_examples),
             )
         )
         self._logit_bias = {
@@ -72,9 +79,17 @@ class LLMClassifier:
             model_kwargs={"logit_bias": self._logit_bias},
         )
 
+    @staticmethod
+    def _construct_few_shot_prompt_segment(few_shot_examples: str) -> str:
+        if len(few_shot_examples) > 0:
+            return f"Here are some examples of how to respond:\n{few_shot_examples}\n"
+        else:
+            return ""
+
     def __call__(self, input_string: str) -> Tuple[str, int]:
         """
-        The function takes a string and classifies it to a class name and class id.
+        The function takes a string and returns a tuple containing the classified class name (string) and corresponding class id (int).
+        param input_string: The string to classify.
         """
         response = self._llm_chat(
             [
