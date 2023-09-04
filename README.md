@@ -1,5 +1,5 @@
 # 🤵🔥 Classy-Fire 🔥🤵
-Classy-fire is multiclass text classification approach leveraging OpenAI LLM model APIs optimally using clever parameter tuning and prompting.
+Classy-fire is a pretrained multiclass text classification approach that leverages Azure OpenAI's LLM APIs using clever parameter tuning and prompting for classification.
 
 # Start here
 
@@ -17,6 +17,15 @@ result = classifier("Has an elongated shape")
 print(result)
 >>> ('Banana', 0)
 ```
+
+## The premise behind classy-fire
+In Classy-fire, we instruct the LLM to provide the most likely classification for an input string to a set of predetermined classes (also strings).
+Formally, given a string instance $x_i$ and a set of k classes provided as strings, $C=(C_1, ..., C_k)$, classy-fire determines $argmax_j Pr[x_i \in C_j | C, \Theta]$
+Where $\Theta$ is the parameters (knowledge of the world) of the language model.
+
+* Classy-fire does this efficiently by mapping class strings to single tokens and providing a strong prior probability for these tokens. We instruct the model to generate a single token response, which allows for optimized inference runtime.
+* Classy-fire does this deterministically by setting the model temperature to 0, thereby guaranteeing the returned response is the argmax of the model posterior probability.
+
 
 ## Contributing
 
