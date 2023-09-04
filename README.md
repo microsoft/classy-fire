@@ -5,7 +5,7 @@ Classy-fire is a pretrained multiclass text classification approach that leverag
 
 ## Installation
 ```
-pip install classy_fire
+pip install classy-fire
 ```
 ## Usage example
 
