@@ -20,7 +20,10 @@ print(result)
 
 ## The premise behind classy-fire
 In Classy-fire, we instruct the LLM to provide the most likely classification for an input string to a set of predetermined classes (also strings).
-Formally, given a string instance $x_i$ and a set of $k$ classes provided as strings, $C=(C_1, ..., C_k)$, classy-fire determines $argmax_j Pr[x_i \in C_j | C, \Theta]$
+Formally, given a string instance $x_i$ and a set of $k$ classes provided as strings, $C=(C_1, ..., C_k)$, classy-fire determines 
+
+$argmax_j Pr[x_i \in C_j | C, \Theta]$
+
 Where $\Theta$ is the parameters (knowledge of the world) of the language model.
 
 * Classy-fire does this efficiently by mapping class strings to single tokens and providing a strong prior probability for these tokens. We instruct the model to generate a single token response, which allows for optimized inference runtime.
