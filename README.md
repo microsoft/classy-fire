@@ -7,6 +7,7 @@ Classy-fire is a pretrained multiclass text classification approach that leverag
 * Struggling to strip unhelpful prefixes (such as "Sure! " or "I am just a language model!")?
 * Having to wait on retries in cases of unexpected outputs?
 * Getting random responses on the same query?
+* Need a "quick and dirty" text classifier? Don't have enough training data?
 
 
 # Start here
