@@ -20,12 +20,16 @@ pip install classy-fire
 
 ```python
 from classy_fire import LLMClassifier
+# 
 classifier = LLMClassifier(["Banana", "Watermelon", "Apple", "Grape"])
 
 result = classifier("Has an elongated shape")
 print(result)
 >>> ('Banana', 0)
 ```
+
+## Prerequisites
+make sure you have OPENAI_API_BASE, OPENAI_API_VERSION, OPENAI_API_TYPE and OPENAI_API_KEY environment variables populated beforehand and a deployment of gpt-3.5-turbo named gpt-35-turbo-0301 (or pass deployment_name and model_name parameters to the LLMClassifier constructor).
 
 # Continue here
 
