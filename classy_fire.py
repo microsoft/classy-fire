@@ -59,7 +59,7 @@ class LLMClassifier:
                 options_string="\n".join(
                     [
                         f"{i}. {cls}"
-                        for i, cls in zip(range(len(class_names)), class_names)
+                        for i, cls in enumerate(class_names)
                     ]
                 ),
                 few_shot_prompt_segment=LLMClassifier._construct_few_shot_prompt_segment(few_shot_examples),
