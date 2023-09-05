@@ -50,7 +50,7 @@ Where $\Theta$ is the parameters (knowledge of the world) of the language model.
 * Classy-fire does this deterministically and with less sensitivity to confabulation (hallucination) by setting the model temperature to 0, thereby guaranteeing the returned response is the argmax of the model posterior probability.
 
 ## Quality of results
-We ran an experiment to classify a sample of 100 tweets from the [tweet_eval dataset](https://huggingface.co/datasets/tweet_eval/viewer/emotion/train).
+We ran a preliminary experiment to classify a sample of 100 tweets from the [tweet_eval dataset](https://huggingface.co/datasets/tweet_eval/viewer/emotion/train).
 The results [appear to beat the SOTA](https://huggingface.co/spaces/autoevaluate/leaderboards?dataset=tweet_eval&only_verified=0&task=-any-&config=emotion&split=test&metric=f1).
              
 |              | precision | recall | f1-score | support |
@@ -64,7 +64,10 @@ The results [appear to beat the SOTA](https://huggingface.co/spaces/autoevaluate
 | macro avg    | 0.87      | 0.74   | 0.74     | 96      |
 | weighted avg | 0.87      | 0.83   | 0.82     | 96      |
 
-See evaluate.ipynb for a sample showcasing the power of this method on a public text classification dataset.
+See evaluate.ipynb for the details behind this experiment.
+
+* We encourage the community to benchmark and explore this method against larger or more standardized datasets.
+* We have not evaluated alternative prompting strategies or the impact of adding few shot examples, there may be flexibility in the achievable quality.
 
 
 # Other stuff
