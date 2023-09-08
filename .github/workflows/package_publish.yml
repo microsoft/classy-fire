@@ -34,3 +34,5 @@ jobs:
       with:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
+    - name: Package Consumption Sanity Check
+      run: package_consumption_sanity_check.py
