@@ -20,7 +20,7 @@ pip install classy-fire
 
 ```python
 from classy_fire import LLMClassifier
-# 
+
 classifier = LLMClassifier(["Banana", "Watermelon", "Apple", "Grape"])
 
 result = classifier("Has an elongated shape")
