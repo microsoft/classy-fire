@@ -1,14 +1,12 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT license.
 
-import os
+from abc import ABC, abstractmethod
 import tiktoken
-from typing import Tuple
-from langchain.chat_models import AzureChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
+from typing import Any, Callable, Dict
 
 
-class LLMClassifier:
+class BaseClassifier(ABC):
     """
     A generic LLM based classifier that can be used to classify a string into a set of classes.
     Usage example:
@@ -53,8 +51,9 @@ class LLMClassifier:
         assert all(
             len(token_list) == 1 for token_list in class_id_tokens
         ), f"A class id number did not map to a single token, maybe too many classes in list: {len(class_names)}"
-        self.system_message = SystemMessage(
-            content=self.system_prompt_base.format(
+        self.system_message = {
+            "role": "system", 
+            "content": self.system_prompt_base.format(
                 context_string=task_description,
                 options_string="\n".join(
                     [
@@ -62,22 +61,16 @@ class LLMClassifier:
                         for i, cls in enumerate(class_names)
                     ]
                 ),
-                few_shot_prompt_segment=LLMClassifier._construct_few_shot_prompt_segment(few_shot_examples),
+                few_shot_prompt_segment=BaseClassifier._construct_few_shot_prompt_segment(few_shot_examples),
             )
-        )
+        }
         self._logit_bias = {
-            token_list[0]: LLMClassifier.MAX_TOKEN_PRIOR
+            token_list[0]: BaseClassifier.MAX_TOKEN_PRIOR
             for token_list in class_id_tokens
         }
-        self._llm_chat = AzureChatOpenAI(
-            deployment_name=deployment_name,
-            openai_api_base=os.environ.get("OPENAI_API_BASE"),
-            openai_api_version=os.environ.get("OPENAI_API_VERSION"),
-            openai_api_key=os.environ.get("OPENAI_API_KEY"),
-            temperature=0,
-            max_tokens=1,
-            model_kwargs={"logit_bias": self._logit_bias},
-        )
+        self._deplyment_name = deployment_name
+        self._model_name = model_name
+        self._llm_chat: Callable[[list[Dict[str, str]]], Any] = self._establish_llm_parameters()
 
     @staticmethod
     def _construct_few_shot_prompt_segment(few_shot_examples: str) -> str:
@@ -86,19 +79,10 @@ class LLMClassifier:
         else:
             return ""
 
-    def __call__(self, input_string: str) -> Tuple[str, int]:
-        """
-        The function takes a string and returns a tuple containing the classified class name (string) and corresponding class id (int).
-        param input_string: The string to classify.
-        """
-        response = self._llm_chat(
-            [
-                self.system_message,
-                HumanMessage(
-                    content=self.user_prompt_base.format(user_prompt=input_string)
-                ),
-            ]
-        )
-        predicted_class_id = int(response.content)
+    @abstractmethod
+    def _establish_llm_parameters(self) -> Callable[[list[Dict[str, str]]], Any]:
+        pass
 
-        return self.class_names[predicted_class_id], predicted_class_id
+    @abstractmethod
+    def __call__(self, input_string: str, **kwargs) -> Any:
+        pass

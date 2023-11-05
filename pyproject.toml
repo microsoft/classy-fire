@@ -21,7 +21,7 @@ dependencies = [
 requires-python = ">=3.7"
 
 [project.optional-dependencies]
-dev = ["pip-tools", "pytest", "tiktoken>=1.0.0", "langchain>=0.0.138", "openai>=1.0.0"]
+dev = ["pip-tools", "pytest", "tiktoken>=0.5.1", "openai>=0.28.0"]
 
 [project.urls]
 Homepage = "https://github.com/microsoft/classy-fire"

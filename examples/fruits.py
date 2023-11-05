@@ -10,9 +10,16 @@ repository_root = os.path.abspath(os.path.join(current_dir, ".."))
 # Add the repository root directory to the Python path
 sys.path.insert(0, repository_root)  # Insert at the beginning of sys.path
 
-from classy_fire import LLMClassifier  # noqa: E402
+from classy_fire.llm_classifier import LLMClassifier  # noqa: E402
 
-classifier = LLMClassifier(["Banana", "Watermelon", "Apple", "Grape"])
+llm_classifier = LLMClassifier(["Banana", "Watermelon", "Apple", "Grape"])
 
-result = classifier("Has an elongated shape")
+result = llm_classifier("Has an elongated shape")
+print(result)
+
+from classy_fire.mcmc_classifier import MCMCClassifier  # noqa: E402
+
+mcmc_classifier = MCMCClassifier(["Banana", "Watermelon", "Apple", "Grape"])
+
+result = mcmc_classifier("Has an elongated shape")
 print(result)
