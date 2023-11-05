@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "classy-fire"
-version = "0.1.7"
+version = "0.1.8"
 description = "Classy-fire is multiclass text classification approach leveraging OpenAI LLM model APIs optimally using clever parameter tuning and prompting."
 readme = "README.md"
 authors = [{ name = "Shay Ben-Elazar", email = "shbenela@microsoft.com" }]
