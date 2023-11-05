@@ -19,7 +19,7 @@ class BaseClassifier(ABC):
         > "Stars"
     """
 
-    MAX_TOKEN_PRIOR: int = 100
+    MAX_TOKEN_PRIOR: int = 10
 
     system_prompt_base: str = (
         "You are an AI assistant. Select for the following human input the most related item from "

@@ -34,7 +34,7 @@ class LLMClassifier(BaseClassifier):
         The function takes a string and returns a tuple containing the classified class name (string) and corresponding class id (int).
         param input_string: The string to classify.
         """
-        response = self._llm_chat(messages=
+        response = self._llm_chat(
             [
                 self.system_message,
                 {

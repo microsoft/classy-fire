@@ -16,10 +16,16 @@ llm_classifier = LLMClassifier(["Banana", "Watermelon", "Apple", "Grape"])
 
 result = llm_classifier("Has an elongated shape")
 print(result)
+# Output:
+# >>> ('Banana', 0)
+# tuple of class name and class ids of the argmax class
 
 from classy_fire.mcmc_classifier import MCMCClassifier  # noqa: E402
 
 mcmc_classifier = MCMCClassifier(["Banana", "Watermelon", "Apple", "Grape"])
 
-result = mcmc_classifier("Has an elongated shape")
+result = mcmc_classifier("Has an oval or spherical shape")
 print(result)
+# Output:
+# >>> [('Banana', 0, 0.0), ('Watermelon', 1, 0.02), ('Apple', 2, 0.81), ('Grape', 3, 0.17)]
+# list of tuples of class names, class ids, and their probabilities
