@@ -19,7 +19,7 @@ pip install classy-fire
 ## Usage example
 
 ```python
-from classy_fire import LLMClassifier
+from classy_fire import LLMClassifier, MCMCClassifier
 
 classifier = LLMClassifier(["Banana", "Watermelon", "Apple", "Grape"])
 
