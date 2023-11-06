@@ -36,6 +36,19 @@ print(result)
 
 ## Prerequisites
 make sure you have OPENAI_API_BASE, OPENAI_API_VERSION, OPENAI_API_TYPE and OPENAI_API_KEY environment variables populated beforehand and a deployment of gpt-3.5-turbo named gpt-35-turbo-0301 (or pass deployment_name and model_name parameters to the LLMClassifier constructor).
+One way to accomplish this:
+1. Create a file called ".env" in the path of your script containing:
+```
+OPENAI_API_BASE=https://<endpoint>/
+OPENAI_API_VERSION=2023-05-15  # for example
+OPENAI_API_TYPE=azure  # or openai
+OPENAI_API_KEY=<private key guid>
+```
+2. install python-dotenv
+3. add to the beginning your script
+```python
+load_dotenv()
+```
 
 # Continue here
 
