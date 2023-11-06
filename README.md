@@ -28,7 +28,7 @@ print(result)
 >>> ('Banana', 0)
 
 mcmc_classifier = MCMCClassifier(["Banana", "Watermelon", "Apple", "Grape"])
-result = classifier("Has an oval or spherical shape")
+result = mcmc_classifier("Has an oval or spherical shape")
 print(result)
 >>> [('Banana', 0, 0.0), ('Watermelon', 1, 0.02), ('Apple', 2, 0.81), ('Grape', 3, 0.17)]
 
