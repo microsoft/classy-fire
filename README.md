@@ -26,6 +26,12 @@ classifier = LLMClassifier(["Banana", "Watermelon", "Apple", "Grape"])
 result = classifier("Has an elongated shape")
 print(result)
 >>> ('Banana', 0)
+
+mcmc_classifier = MCMCClassifier(["Banana", "Watermelon", "Apple", "Grape"])
+result = classifier("Has an oval or spherical shape")
+print(result)
+>>> [('Banana', 0, 0.0), ('Watermelon', 1, 0.02), ('Apple', 2, 0.81), ('Grape', 3, 0.17)]
+
 ```
 
 ## Prerequisites
@@ -48,6 +54,7 @@ Where $\Theta$ is the parameters (knowledge of the world) of the language model.
 
 * Classy-fire does this efficiently by mapping class strings to single tokens and providing a strong prior probability for these tokens. We instruct the model to generate a single token response, which allows for optimized inference runtime.
 * Classy-fire does this deterministically and with less sensitivity to confabulation (hallucination) by setting the model temperature to 0, thereby guaranteeing the returned response is the argmax of the model posterior probability.
+* **New!** MCMCClassifier can now estimate the posterior distribution over classes using a Markov Chain Monte Carlo approach!
 
 ## Quality of results
 We ran a preliminary experiment to classify a sample of 100 tweets from the [tweet_eval dataset](https://huggingface.co/datasets/tweet_eval/viewer/emotion/train).
