@@ -20,9 +20,9 @@ class LLMClassifier(BaseClassifier):
 
     def _establish_llm_parameters(self) -> Callable[[list[Dict[str, str]]], Any]:
         def _llm_chat(messages: list[Dict[str, str]]):
-            return openai.ChatCompletion.create(
+            return self.client.chat.completions.create(
                     messages = messages,
-                    engine = self._deplyment_name,
+                    model = self._deplyment_name,
                     temperature = 0,
                     max_tokens = 1,
                     logit_bias = self._logit_bias
@@ -43,6 +43,6 @@ class LLMClassifier(BaseClassifier):
                 },
             ]
         )
-        predicted_class_id = int(response["choices"][0]["message"]["content"])
+        predicted_class_id = int(response.choices[0].message.content)
 
         return self.class_names[predicted_class_id], predicted_class_id

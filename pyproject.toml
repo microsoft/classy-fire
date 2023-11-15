@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "classy-fire"
-version = "0.1.9"
+version = "0.2.0"
 description = "Classy-fire is multiclass text classification approach leveraging OpenAI LLM model APIs optimally using clever parameter tuning and prompting."
 readme = "README.md"
 authors = [{ name = "Shay Ben-Elazar", email = "shbenela@microsoft.com" }]
@@ -21,7 +21,7 @@ dependencies = [
 requires-python = ">=3.7"
 
 [project.optional-dependencies]
-dev = ["pip-tools", "pytest", "tiktoken>=0.5.1", "openai>=0.28.0"]
+dev = ["pip-tools", "pytest", "tiktoken>=0.5.1", "openai==1.2.4"]
 
 [project.urls]
 Homepage = "https://github.com/microsoft/classy-fire"

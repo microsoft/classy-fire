@@ -19,9 +19,9 @@ class MCMCClassifier(BaseClassifier):
 
     def _establish_llm_parameters(self) -> Callable[[list[Dict[str, str]]], Any]:
         def _llm_chat(messages: list[Dict[str, str]]):
-            return openai.ChatCompletion.create(
+            return self.client.chat.completions.create(
                 messages=messages,
-                engine = self._deplyment_name,
+                model = self._deplyment_name,
                 temperature=1,
                 n=100,
                 max_tokens=1,
@@ -43,7 +43,7 @@ class MCMCClassifier(BaseClassifier):
                 },
             ]
         )
-        results = [res["message"]["content"] for res in response["choices"]]
+        results = [res.message.content for res in response.choices]
         distribution = np.histogram(results, bins=range(len(self.class_names)+1), density=True)[0]
         result_list = list(zip(self.class_names, range(len(self.class_names)+1), distribution.tolist()))
         return result_list

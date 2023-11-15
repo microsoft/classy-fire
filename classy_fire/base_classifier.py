@@ -2,9 +2,10 @@
 # Licensed under the MIT license.
 
 from abc import ABC, abstractmethod
+import os
 import tiktoken
 from typing import Any, Callable, Dict
-
+from openai import OpenAI, AzureOpenAI
 
 class BaseClassifier(ABC):
     """
@@ -71,6 +72,12 @@ class BaseClassifier(ABC):
         self._deplyment_name = deployment_name
         self._model_name = model_name
         self._llm_chat: Callable[[list[Dict[str, str]]], Any] = self._establish_llm_parameters()
+        if os.environ["OPENAI_API_TYPE"] == "azure":
+            self.client = AzureOpenAI(api_key = os.environ["OPENAI_API_KEY"],
+                                      api_version = os.environ["OPENAI_API_VERSION"],
+                                      azure_endpoint = os.environ["OPENAI_API_BASE"])
+        else:
+            self.client = OpenAI(api_key = os.environ["OPENAI_API_KEY"])
 
     @staticmethod
     def _construct_few_shot_prompt_segment(few_shot_examples: str) -> str:
