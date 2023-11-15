@@ -1,2 +1,6 @@
 .env
 __pycache__/classy_fire.cpython-39.pyc
+classy_fire/__pycache__/__init__.cpython-39.pyc
+classy_fire/__pycache__/base_classifier.cpython-39.pyc
+classy_fire/__pycache__/llm_classifier.cpython-39.pyc
+classy_fire/__pycache__/mcmc_classifier.cpython-39.pyc
