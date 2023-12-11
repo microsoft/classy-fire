@@ -66,8 +66,8 @@ $argmax_j Pr[x_i \in C_j | C, \Theta]$
 Where $\Theta$ is the parameters (knowledge of the world) of the language model.
 
 * Classy-fire does this efficiently by mapping class strings to single tokens and providing a strong prior probability for these tokens. We instruct the model to generate a single token response, which allows for optimized inference runtime.
-* Classy-fire does this deterministically and with less sensitivity to confabulation (hallucination) by setting the model temperature to 0, thereby guaranteeing the returned response is the argmax of the model posterior probability.
-* **New!** MCMCClassifier can now estimate the posterior distribution over classes using a Markov Chain Monte Carlo approach!
+* Classy-fire's LLMClassifier does this deterministically and with less sensitivity to confabulation (hallucination) by setting the model temperature to 0, thereby guaranteeing the returned response is the argmax of the model posterior probability.
+* **New!** MCMCClassifier can now estimate the posterior distribution over classes using a Markov Chain Monte Carlo approach! We do this efficiently by generating multiple outputs for the same input using the $n$ parameter (see [How is pricing calculated for Completions?](https://openai.com/pricing#faq-completions-pricing)).
 
 ## Quality of results
 We ran a preliminary experiment to classify a sample of 100 tweets from the [tweet_eval dataset](https://huggingface.co/datasets/tweet_eval/viewer/emotion/train).
